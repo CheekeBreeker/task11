@@ -1,24 +1,24 @@
 public class Lucky {
     static int count = 0;
-    private static StateObject stateObject;
+    private static State state;
 
     static class LuckyThread extends Thread {
-        public LuckyThread(StateObject object) {
-            stateObject = object;
+        public LuckyThread(State object) {
+            state = object;
         }
 
         @Override
         public void run() {
-            stateObject.run();
-            count = stateObject.getCount();
+            state.run();
+            count = state.getCount();
         }
     }
 
     public static void main(String[] args) throws InterruptedException {
-        StateObject stateObject = new StateObject();
-        Thread t1 = new LuckyThread(stateObject);
-        Thread t2 = new LuckyThread(stateObject);
-        Thread t3 = new LuckyThread(stateObject);
+        StateObject stateObject = new state();
+        Thread t1 = new LuckyThread(state);
+        Thread t2 = new LuckyThread(state);
+        Thread t3 = new LuckyThread(state);
         t1.start();
         t2.start();
         t3.start();
